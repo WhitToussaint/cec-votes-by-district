@@ -3,10 +3,12 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Responsive Web Map Layout</title>
+    <title>Votes for Community Education Council by School District</title>
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.14.0/mapbox-gl.css" rel="stylesheet">
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.14.0/mapbox-gl.js"></script>
+    <link href='css/styles.css' rel='stylesheet' />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
         html,
         head,
@@ -88,7 +90,7 @@
 <body>
     <div id="main-container">
         <nav>
-            <div class="title">Responsive Map</div>
+            <div class="title">Votes Cast for Community Education Council by School District</div>
             <div class="nav-links">
                 <a class="nav-link" href="https://github.com/chriswhong/responsive-web-map-layout" target="_blank"
                     rel="noopener noreferrer">Github</a>
@@ -97,39 +99,31 @@
         </nav>
         <div id="content-container">
             <div id="sidebar">
-                <p>This is a simple, responsive layout template for web mapping projects. It can save you some time scaffolding your project so you can focus on everything else.</p>
-                <p>It's fullscreen, and features a top nav, fixed-width sidebar, and main map area.</p>
-                <p>This sidebar will scroll if its content becomes longer than the map.</p>
-                <p>On mobile devices, the orientation of the sidebar and map containers changes to a column, with the
-                    map on top taking 60% of the height, and the sidebar on the bottom.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus pretium diam ac ex malesuada, vel
-                    commodo ligula porttitor. Aenean blandit tellus et nisl suscipit bibendum at at nunc. Mauris
-                    sagittis porttitor convallis. Duis eget maximus ipsum. In cursus ornare dictum. Quisque enim ex,
-                    sagittis non turpis ac, ornare ullamcorper nibh. Lorem ipsum dolor sit amet, consectetur adipiscing
-                    elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ante ipsum primis in
-                    faucibus orci luctus et ultrices posuere cubilia curae; Aenean eget risus vel magna varius commodo
-                    eu eu quam. Nam sed sagittis justo, vitae placerat felis. Sed sed congue purus. Sed hendrerit tortor
-                    augue, vitae pellentesque ex ornare molestie.</p>
-                <p>Vestibulum ultricies urna nec maximus facilisis. Morbi ut suscipit augue, non suscipit felis. Etiam
-                    aliquam molestie auctor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
-                    inceptos himenaeos. Proin ac cursus neque, in semper ante. Nullam purus velit, vestibulum quis
-                    dictum ac, elementum dapibus metus. Integer feugiat luctus quam in auctor. Etiam eu laoreet tortor.
-                    Vivamus sit amet finibus elit. Suspendisse vel varius dolor, ac egestas mauris.</p>
+                <p>This map depicts the amount of votes cast for every Community Education Council by School District.
+                </p>
+                <p>Community Education Councils or CECs are charged with promoting student achievement, advising and
+                    commenting on educational policies, and providing input to the Chancellor and the Panel for
+                    Education Policy (PEP).</p>
+                <p>Each school district has their own CEC with 11 members. 9 of the 11 members are elected by parents
+                    and guardians with children in the school district and the other 2 members are appointed by their
+                    respective Borough President.
+                </p>
+                <p>Every parent or guardian is provided 3 votes per child in grades K - 8 in each school district.</p>
+                <p>Currently, the participation level has been low in comparison to the amount of students in each
+                    district.
+                </p>
+                <p>Make sure you have a voice this elections cycle.
+                </p>
+                </p> Click the button below to go to sign in to your
+                mystudents.nyc to vote.</p>
+                <button id="vote" class="button-18" role="button">Vote Here</button>
             </div>
             <div id="map"></div>
         </div>
     </div>
 
-    <script>
-        mapboxgl.accessToken = 'pk.eyJ1IjoiY3dob25nIiwiYSI6IjAyYzIwYTJjYTVhMzUxZTVkMzdmYTQ2YzBmMTM0ZDAyIn0.owNd_Qa7Sw2neNJbK6zc1A';
-        const map = new mapboxgl.Map({
-            container: 'map',
-            style: 'mapbox://styles/mapbox/streets-v12',
-            center: [-74.5, 40],
-            zoom: 2
-        });
+    <script src="js/scripts.js">
 
-        map.addControl(new mapboxgl.NavigationControl());
     </script>
 
 </body>
