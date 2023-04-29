@@ -46,19 +46,8 @@ map.on('load', function () {
             'line-color': '#525050'
         }
     })
-
-    map.on('click', 'fill-school-districts-nyc-simplified', (e) => {
-        //use Jquery to display district vote information text on popup
-        var popupContent = '<div class="popup-content">' +
-            '<h3>' + e.features[0] + '</h3>' +
-            '<p>' + e.features[0] + '</p>' +
-            '</div>';
-        new mapboxgl.Popup()
-            .setLngLat(e.lngLat)
-            .setHTML(popupContent)
-            .addTo(map);
-    });
-    // update featurestate when the mouse moves around within the school district layer
+    let hoveredStateId
+    // update featurestate when the mouse moves around within the fill layer
     map.on('mousemove', 'fill-school-districts-nyc-simplified', (e) => {
         if (e.features.length > 0) {
             if (hoveredStateId !== null) {
@@ -75,7 +64,7 @@ map.on('load', function () {
         }
     });
 
-    // when the mouse leaves the school district layer, make sure nothing has the hover featurestate
+    // when the mouse leaves the cd layer, make sure nothing has the hover featurestate
     map.on('mouseleave', 'fill-school-districts-nyc-simplified', () => {
         if (hoveredStateId !== null) {
             map.setFeatureState(
@@ -87,6 +76,40 @@ map.on('load', function () {
     });
 })
 
+map.on('click', 'fill-school-districts-nyc-simplified', (e) => {
+    //use Jquery to display district vote information text on popup
+   
+    var popupContent = '<div class="popup-content">' +
+        '<h3>' + e.features[0].properties.school_dist + '</h3>' +
+        '<p>' + "Neighborhoods: " + e.features[0].properties.neighborhoods + '</p>' +
+        '<p>' + "Votes Cast: " + e.features[0].properties.votes_cast + '</p>'
+    '</div>';
+    new mapboxgl.Popup()
+        .setLngLat(e.lngLat)
+        .setHTML(popupContent)
+        .addTo(map);
+});
+
+
 $('#vote').on('click', function () {
     window.open('https://www.schoolsaccount.nyc/', '_blank');
 });
+
+const legendItems = [
+    { name: 'Votes 1 - 1000', color: '#edf8fb' },
+    { name: 'Votes 1001 - 3000', color: '#b3cde3' },
+    { name: 'Votes 3001 - 5000', color: '#8c96c6' },
+    { name: 'Votes 5001 - 7000', color: '#8856a7' },
+    { name: 'Votes 7000 - 9000+', color: '#810f7c' }
+];
+
+legendItems.forEach(item => {
+    const legendItem = $('<div>').addClass('legend-item');
+    const legendColor = $('<div>').addClass('legend-color').css('background-color', item.color);
+    const legendText = $('<span>').text(item.name);
+    legendItem.append(legendColor).append(legendText);
+    $('#legend').append(legendItem);
+});
+
+const legendControl = new mapboxgl.Control({ element: $('#legend')[0] });
+map.addControl(legendControl);
