@@ -82,7 +82,7 @@ map.on('click', 'fill-school-districts-nyc-simplified', (e) => {
     var popupContent = '<div class="popup-content">' +
         '<h3>' + e.features[0].properties.school_dist + '</h3>' +
         '<p>' + "Neighborhoods: " + e.features[0].properties.neighborhoods + '</p>' +
-        '<p>' + "Votes Cast: " + e.features[0].properties.votes_cast + '</p>'
+        '<p>' + "2021 Votes Cast: " + e.features[0].properties.votes_cast + '</p>'
     '</div>';
     new mapboxgl.Popup()
         .setLngLat(e.lngLat)
